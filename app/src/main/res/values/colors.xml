@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Brand Colors -->
+    <color name="primary">#FFB300</color>
+    <color name="primary_dark">#FFA000</color>
+    <color name="primary_light">#FFE082</color>
+    
+    <!-- Secondary Colors -->
+    <color name="secondary">#9575CD</color>
+    <color name="secondary_dark">#7E57C2</color>
+    <color name="secondary_light">#B39DDB</color>
+    
+    <!-- Background Colors -->
+    <color name="background">#FDFBF7</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="card_background">#FFFFFF</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#3E2723</color>
+    <color name="text_secondary">#8D6E63</color>
+    <color name="text_hint">#A1887F</color>
+    <color name="text_on_primary">#3E2723</color>
+    <color name="text_on_secondary">#FFFFFF</color>
+    
+    <!-- Accent Colors -->
+    <color name="accent">#EDE7F6</color>
+    <color name="accent_dark">#D1C4E9</color>
+    <color name="muted">#F5F5F5</color>
+    
+    <!-- Status Colors -->
+    <color name="success">#388E3C</color>
+    <color name="success_light">#C8E6C9</color>
+    <color name="error">#D32F2F</color>
+    <color name="error_light">#FFCDD2</color>
+    <color name="warning">#FFA000</color>
+    <color name="warning_light">#FFECB3</color>
+    <color name="info">#1976D2</color>
+    <color name="info_light">#BBDEFB</color>
+    
+    <!-- Border & Divider -->
+    <color name="border">#D7CCC8</color>
+    <color name="divider">#EFEBE9</color>
+    
+    <!-- Chart Colors -->
+    <color name="chart_1">#FFB300</color>
+    <color name="chart_2">#9575CD</color>
+    <color name="chart_3">#388E3C</color>
+    <color name="chart_4">#D32F2F</color>
+    <color name="chart_5">#1976D2</color>
+    
+    <!-- Order Status Colors -->
+    <color name="status_pending">#FFA000</color>
+    <color name="status_confirmed">#1976D2</color>
+    <color name="status_preparing">#7E57C2</color>
+    <color name="status_ready">#388E3C</color>
+    <color name="status_on_delivery">#0288D1</color>
+    <color name="status_delivered">#388E3C</color>
+    <color name="status_cancelled">#D32F2F</color>
+    
+    <!-- Overlay -->
+    <color name="overlay_dark">#66000000</color>
+    <color name="overlay_light">#33FFFFFF</color>
+    <color name="scrim">#99000000</color>
+    
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#FFB300</color>
+    <color name="gradient_end">#FFA000</color>
+</resources>

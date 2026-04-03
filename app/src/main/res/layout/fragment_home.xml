@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:elevation="0dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/discover"
+                    android:textAppearance="@style/TextAppearance.FoodDay.HeadlineMedium"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="4dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/deliver_to_location"
+                    android:textAppearance="@style/TextAppearance.FoodDay.BodySmall"
+                    android:textColor="@color/text_secondary" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <!-- Search Bar -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvSearch"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@color/surface"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="2dp"
+                app:strokeColor="@color/border"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_search"
+                        app:tint="@color/text_hint" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:text="@string/search_hint"
+                        android:textAppearance="@style/TextAppearance.FoodDay.BodyMedium"
+                        android:textColor="@color/text_hint" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_filter"
+                        app:tint="@color/primary" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Banners -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginTop="16dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPagerBanners"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dotsIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="12dp"
+                    app:dotsColor="@color/border"
+                    app:dotsCornerRadius="8dp"
+                    app:dotsSize="8dp"
+                    app:dotsSpacing="4dp"
+                    app:dotsWidthFactor="2.5"
+                    app:progressMode="true"
+                    app:selectedDotColor="@color/primary" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerBanners"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_shimmer" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </FrameLayout>
+
+            <!-- Categories -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/categories"
+                    android:textAppearance="@style/TextAppearance.FoodDay.TitleLarge"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvSeeAllCategories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_all"
+                    android:textAppearance="@style/TextAppearance.FoodDay.BodyMedium"
+                    android:textColor="@color/primary" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="12dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingEnd="16dp"
+                    tools:listitem="@layout/item_category" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerCategories"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <include layout="@layout/item_category_shimmer" />
+                        <include layout="@layout/item_category_shimmer" />
+                        <include layout="@layout/item_category_shimmer" />
+                        <include layout="@layout/item_category_shimmer" />
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </FrameLayout>
+
+            <!-- Featured Restaurants -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/featured_restaurants"
+                    android:textAppearance="@style/TextAppearance.FoodDay.TitleLarge"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvSeeAllRestaurants"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_all"
+                    android:textAppearance="@style/TextAppearance.FoodDay.BodyMedium"
+                    android:textColor="@color/primary" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="12dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRestaurants"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingEnd="16dp"
+                    tools:listitem="@layout/item_restaurant" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerRestaurants"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <include layout="@layout/item_restaurant_shimmer" />
+                        <include layout="@layout/item_restaurant_shimmer" />
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </FrameLayout>
+
+            <!-- Popular Products -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/popular_near_you"
+                    android:textAppearance="@style/TextAppearance.FoodDay.TitleLarge"
+                    android:textColor="@color/text_primary" />
+
+                <TextView
+                    android:id="@+id/tvSeeAllPopular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/see_all"
+                    android:textAppearance="@style/TextAppearance.FoodDay.BodyMedium"
+                    android:textColor="@color/primary" />
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:minHeight="300dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPopular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingEnd="8dp"
+                    tools:listitem="@layout/item_product" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:columnCount="2">
+
+                        <include layout="@layout/item_product_shimmer" />
+                        <include layout="@layout/item_product_shimmer" />
+                        <include layout="@layout/item_product_shimmer" />
+                        <include layout="@layout/item_product_shimmer" />
+
+                    </GridLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
