@@ -130,9 +130,16 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     val user = firebaseAuth.currentUser
-                    user?.let {
-                        // Use Firebase user info to login/register with backend
-                        viewModel.login(it.email ?: "", it.uid.take(20))
+                    user?.getIdToken(false)?.addOnCompleteListener { tokenTask ->
+                        if (tokenTask.isSuccessful) {
+                            val firebaseIdToken = tokenTask.result.token
+                            user.let {
+                                // Use Firebase user email and ID token to login/register with backend
+                                viewModel.login(it.email ?: "", firebaseIdToken ?: "")
+                            }
+                        } else {
+                            Toast.makeText(this, "Failed to get ID token", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 } else {
                     Toast.makeText(this, "Authentication failed", Toast.LENGTH_SHORT).show()
