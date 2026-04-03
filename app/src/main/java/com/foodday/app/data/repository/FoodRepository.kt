@@ -188,7 +188,7 @@ class FoodRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.submitReview("Bearer $token", request)
+            val response = apiService.submitReview(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {

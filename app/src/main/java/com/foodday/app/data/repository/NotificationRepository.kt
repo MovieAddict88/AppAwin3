@@ -23,7 +23,7 @@ class NotificationRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.getNotifications("Bearer $token")
+            val response = apiService.getNotifications()
             if (response.isSuccessful) {
                 response.body()?.let { notificationsResponse ->
                     if (notificationsResponse.success) {
@@ -54,7 +54,7 @@ class NotificationRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.markNotificationAsRead("Bearer $token", notificationId)
+            val response = apiService.markNotificationAsRead(notificationId)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
@@ -80,7 +80,7 @@ class NotificationRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.deleteNotification("Bearer $token", notificationId)
+            val response = apiService.deleteNotification(notificationId)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {

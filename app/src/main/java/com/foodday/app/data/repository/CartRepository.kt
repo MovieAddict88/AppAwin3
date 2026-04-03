@@ -23,7 +23,7 @@ class CartRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.getCart("Bearer $token", lat, lng)
+            val response = apiService.getCart(lat, lng)
             if (response.isSuccessful) {
                 response.body()?.let { cartResponse ->
                     if (cartResponse.success) {
@@ -49,7 +49,7 @@ class CartRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.addToCart("Bearer $token", request)
+            val response = apiService.addToCart(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
@@ -76,7 +76,7 @@ class CartRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.updateCartItem("Bearer $token", request)
+            val response = apiService.updateCartItem(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
@@ -102,7 +102,7 @@ class CartRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.removeCartItem("Bearer $token", cartId)
+            val response = apiService.removeCartItem(cartId)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
@@ -128,7 +128,7 @@ class CartRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.clearCart("Bearer $token")
+            val response = apiService.clearCart()
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {

@@ -28,7 +28,7 @@ class OrderRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.getOrders("Bearer $token", status)
+            val response = apiService.getOrders(status)
             if (response.isSuccessful) {
                 response.body()?.let { ordersResponse ->
                     if (ordersResponse.success) {
@@ -54,7 +54,7 @@ class OrderRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.getOrderById("Bearer $token", orderId)
+            val response = apiService.getOrderById(orderId)
             if (response.isSuccessful) {
                 response.body()?.let { ordersResponse ->
                     if (ordersResponse.success) {
@@ -93,7 +93,7 @@ class OrderRepository @Inject constructor(
                 MultipartBody.Part.createFormData("payment_proof", file.name, requestFile)
             }
             
-            val response = apiService.placeOrder("Bearer $token", orderDataBody, paymentProofPart)
+            val response = apiService.placeOrder(orderDataBody, paymentProofPart)
             if (response.isSuccessful) {
                 response.body()?.let { placeOrderResponse ->
                     if (placeOrderResponse.success) {
@@ -121,7 +121,7 @@ class OrderRepository @Inject constructor(
             }
             
             val request = CancelOrderRequest(orderId, "cancel", reason)
-            val response = apiService.cancelOrder("Bearer $token", request)
+            val response = apiService.cancelOrder(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
@@ -148,7 +148,7 @@ class OrderRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.validatePromoCode("Bearer $token", code)
+            val response = apiService.validatePromoCode(code)
             if (response.isSuccessful) {
                 response.body()?.let { validateResponse ->
                     if (validateResponse.success) {

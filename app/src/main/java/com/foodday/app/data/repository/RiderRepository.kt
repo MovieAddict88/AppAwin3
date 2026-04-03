@@ -23,7 +23,7 @@ class RiderRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.getRiderOrders("Bearer $token", status)
+            val response = apiService.getRiderOrders(status)
             if (response.isSuccessful) {
                 response.body()?.let { riderOrdersResponse ->
                     if (riderOrdersResponse.success) {
@@ -49,7 +49,7 @@ class RiderRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.getRiderOrderById("Bearer $token", orderId)
+            val response = apiService.getRiderOrderById(orderId)
             if (response.isSuccessful) {
                 response.body()?.let { riderOrdersResponse ->
                     if (riderOrdersResponse.success) {
@@ -78,7 +78,7 @@ class RiderRepository @Inject constructor(
             }
             
             val request = UpdateOrderStatusRequest(orderId, "update_status", status)
-            val response = apiService.updateRiderOrderStatus("Bearer $token", request)
+            val response = apiService.updateRiderOrderStatus(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
@@ -105,7 +105,7 @@ class RiderRepository @Inject constructor(
             }
             
             val request = UpdateRiderLocationRequest(latitude, longitude)
-            val response = apiService.updateRiderLocation("Bearer $token", request)
+            val response = apiService.updateRiderLocation(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {

@@ -19,8 +19,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         
-        buildConfigField("String", "API_BASE_URL", "\"http://awinpizzaxcoffee.com/api/\"")
-        buildConfigField("String", "BASE_URL", "\"http://awinpizzaxcoffee.com/\"")
+        buildConfigField("String", "API_BASE_URL", "\"https://awinpizzaxcoffee.com/api/\"")
+        buildConfigField("String", "BASE_URL", "\"https://awinpizzaxcoffee.com/\"")
     }
 
     buildTypes {

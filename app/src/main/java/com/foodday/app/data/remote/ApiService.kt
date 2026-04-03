@@ -16,11 +16,10 @@ interface ApiService {
     suspend fun login(@Body request: LoginRequest): Response<AuthResponse>
     
     @GET("auth.php")
-    suspend fun getProfile(@Header("Authorization") token: String): Response<AuthResponse>
+    suspend fun getProfile(): Response<AuthResponse>
     
     @PUT("auth.php")
     suspend fun updateProfile(
-        @Header("Authorization") token: String,
         @Body request: UpdateProfileRequest
     ): Response<ApiResponse<*>>
     
@@ -60,88 +59,76 @@ interface ApiService {
     // Cart
     @GET("cart.php")
     suspend fun getCart(
-        @Header("Authorization") token: String,
         @Query("lat") lat: Double? = null,
         @Query("lng") lng: Double? = null
     ): Response<CartResponse>
     
     @POST("cart.php")
     suspend fun addToCart(
-        @Header("Authorization") token: String,
         @Body request: AddToCartRequest
     ): Response<ApiResponse<*>>
     
     @PUT("cart.php")
     suspend fun updateCartItem(
-        @Header("Authorization") token: String,
         @Body request: UpdateCartRequest
     ): Response<ApiResponse<*>>
     
     @DELETE("cart.php")
     suspend fun removeCartItem(
-        @Header("Authorization") token: String,
         @Query("id") id: Int
     ): Response<ApiResponse<*>>
     
     @DELETE("cart.php")
-    suspend fun clearCart(@Header("Authorization") token: String): Response<ApiResponse<*>>
+    suspend fun clearCart(): Response<ApiResponse<*>>
     
     // Orders
     @GET("orders.php")
     suspend fun getOrders(
-        @Header("Authorization") token: String,
         @Query("status") status: String? = null
     ): Response<OrdersResponse>
     
     @GET("orders.php")
     suspend fun getOrderById(
-        @Header("Authorization") token: String,
         @Query("id") id: Int
     ): Response<OrdersResponse>
     
     @Multipart
     @POST("orders.php")
     suspend fun placeOrder(
-        @Header("Authorization") token: String,
         @Part("order_data") orderData: RequestBody,
         @Part paymentProof: MultipartBody.Part? = null
     ): Response<PlaceOrderResponse>
     
     @PUT("orders.php")
     suspend fun cancelOrder(
-        @Header("Authorization") token: String,
         @Body request: CancelOrderRequest
     ): Response<ApiResponse<*>>
     
     // Favorites
     @GET("favorites.php")
-    suspend fun getFavorites(@Header("Authorization") token: String): Response<FavoritesResponse>
+    suspend fun getFavorites(): Response<FavoritesResponse>
     
     @POST("favorites.php")
     suspend fun addFavorite(
-        @Header("Authorization") token: String,
         @Body request: AddFavoriteRequest
     ): Response<ApiResponse<*>>
     
     @DELETE("favorites.php")
     suspend fun removeFavorite(
-        @Header("Authorization") token: String,
         @Query("product_id") productId: Int
     ): Response<ApiResponse<*>>
     
     // Notifications
     @GET("notifications.php")
-    suspend fun getNotifications(@Header("Authorization") token: String): Response<NotificationsResponse>
+    suspend fun getNotifications(): Response<NotificationsResponse>
     
     @PUT("notifications.php")
     suspend fun markNotificationAsRead(
-        @Header("Authorization") token: String,
         @Query("id") id: Int? = null
     ): Response<ApiResponse<*>>
     
     @DELETE("notifications.php")
     suspend fun deleteNotification(
-        @Header("Authorization") token: String,
         @Query("id") id: Int? = null
     ): Response<ApiResponse<*>>
     
@@ -152,7 +139,6 @@ interface ApiService {
     // Promo Codes
     @GET("promo-codes.php?action=validate")
     suspend fun validatePromoCode(
-        @Header("Authorization") token: String,
         @Query("code") code: String
     ): Response<ValidatePromoCodeResponse>
     
@@ -166,7 +152,6 @@ interface ApiService {
     
     @POST("reviews.php")
     suspend fun submitReview(
-        @Header("Authorization") token: String,
         @Body request: SubmitReviewRequest
     ): Response<ApiResponse<*>>
     
@@ -177,25 +162,21 @@ interface ApiService {
     // Rider
     @GET("rider-orders.php")
     suspend fun getRiderOrders(
-        @Header("Authorization") token: String,
         @Query("status") status: String? = null
     ): Response<RiderOrdersResponse>
     
     @GET("rider-orders.php")
     suspend fun getRiderOrderById(
-        @Header("Authorization") token: String,
         @Query("id") id: Int
     ): Response<RiderOrdersResponse>
     
     @PUT("rider-orders.php")
     suspend fun updateRiderOrderStatus(
-        @Header("Authorization") token: String,
         @Body request: UpdateOrderStatusRequest
     ): Response<ApiResponse<*>>
     
     @PUT("rider-orders.php")
     suspend fun updateRiderLocation(
-        @Header("Authorization") token: String,
         @Body request: UpdateRiderLocationRequest
     ): Response<ApiResponse<*>>
     

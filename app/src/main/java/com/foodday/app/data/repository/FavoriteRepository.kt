@@ -23,7 +23,7 @@ class FavoriteRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.getFavorites("Bearer $token")
+            val response = apiService.getFavorites()
             if (response.isSuccessful) {
                 response.body()?.let { favoritesResponse ->
                     if (favoritesResponse.success) {
@@ -50,7 +50,7 @@ class FavoriteRepository @Inject constructor(
             }
             
             val request = AddFavoriteRequest(productId)
-            val response = apiService.addFavorite("Bearer $token", request)
+            val response = apiService.addFavorite(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
@@ -77,7 +77,7 @@ class FavoriteRepository @Inject constructor(
                 return@flow
             }
             
-            val response = apiService.removeFavorite("Bearer $token", productId)
+            val response = apiService.removeFavorite(productId)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {
