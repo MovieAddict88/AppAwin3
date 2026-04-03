@@ -1,10 +1,12 @@
 package com.foodday.app.data.remote
 
 import com.foodday.app.BuildConfig
+import com.foodday.app.data.repository.SessionManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -31,10 +33,25 @@ object NetworkModule {
     
     @Provides
     @Singleton
-    fun provideOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideOkHttpClient(
+        loggingInterceptor: HttpLoggingInterceptor,
+        sessionManager: SessionManager
+    ): OkHttpClient {
         android.util.Log.d("NetworkModule", "Providing OkHttpClient")
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
+            .addInterceptor { chain ->
+                val original = chain.request()
+                val requestBuilder = original.newBuilder()
+                
+                val token = sessionManager.getAuthToken()
+                if (token != null && original.header("Authorization") == null) {
+                    requestBuilder.addHeader("Authorization", "Bearer $token")
+                }
+                
+                requestBuilder.addHeader("Accept", "application/json")
+                chain.proceed(requestBuilder.build())
+            }
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)

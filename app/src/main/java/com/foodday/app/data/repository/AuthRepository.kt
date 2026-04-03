@@ -31,6 +31,9 @@ class AuthRepository @Inject constructor(
     fun register(request: RegisterRequest): Flow<Resource<AuthResponse>> = flow {
         emit(Resource.Loading())
         try {
+            // Clear old session to ensure no old token is sent in the interceptor
+            sessionManager.clearSession()
+            
             val response = apiService.register(request)
             if (response.isSuccessful) {
                 response.body()?.let { authResponse ->
@@ -57,6 +60,9 @@ class AuthRepository @Inject constructor(
     fun login(request: LoginRequest): Flow<Resource<AuthResponse>> = flow {
         emit(Resource.Loading())
         try {
+            // Clear old session to ensure no old token is sent in the interceptor
+            sessionManager.clearSession()
+            
             val response = apiService.login(request)
             if (response.isSuccessful) {
                 response.body()?.let { authResponse ->
@@ -83,13 +89,7 @@ class AuthRepository @Inject constructor(
     fun getProfile(): Flow<Resource<User>> = flow {
         emit(Resource.Loading())
         try {
-            val token = sessionManager.getAuthToken()
-            if (token == null) {
-                emit(Resource.Error("Not authenticated"))
-                return@flow
-            }
-            
-            val response = apiService.getProfile("Bearer $token")
+            val response = apiService.getProfile()
             if (response.isSuccessful) {
                 response.body()?.let { authResponse ->
                     if (authResponse.success) {
@@ -112,13 +112,7 @@ class AuthRepository @Inject constructor(
     fun updateProfile(request: UpdateProfileRequest): Flow<Resource<Boolean>> = flow {
         emit(Resource.Loading())
         try {
-            val token = sessionManager.getAuthToken()
-            if (token == null) {
-                emit(Resource.Error("Not authenticated"))
-                return@flow
-            }
-            
-            val response = apiService.updateProfile("Bearer $token", request)
+            val response = apiService.updateProfile(request)
             if (response.isSuccessful) {
                 response.body()?.let { apiResponse ->
                     if (apiResponse.success) {

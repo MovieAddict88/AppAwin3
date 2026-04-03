@@ -118,7 +118,11 @@ class SessionManager @Inject constructor(
     
     fun clearSession() {
         try {
-            prefs.edit().clear().apply()
+            prefs.edit()
+                .remove(KEY_AUTH_TOKEN)
+                .remove(KEY_USER)
+                .remove(KEY_FIREBASE_TOKEN)
+                .apply()
         } catch (e: Exception) {
             Log.e(TAG, "Error clearing session", e)
         }
